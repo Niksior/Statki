@@ -1,14 +1,24 @@
 # Statki
 
 ## Klasy:
- statek : atrybuty: (TypStatku, pktŻycia, status (trafiony/zatopiony), punkty[]) 
- TypStatku : atrybuty : (maxLiczba, typ)
- Plansza : atrybuty : (lokalizacjaStatków[], lokalizacjaStrzałów, rozmiar (x,y), liczbaStatkow,)
- Punkt : atrybuty: ( x,y)
- 
- 
- 1. użytkownik podaje rozmiar planszy oraz liczbę statków dla każdego typu (np. 2 dwumasztowce, 3 trzymasztowce, itp.), tryb ustawiania (manual, auto)
- 2. Generowana jest plansza, pod każdy punkt przypisywane jest id statku
+plansza:
+Parametry: rozmiar pola, typ i ilość statków, ilość "żywych" statków, manualne rozmieszczenie/auto,
+	 przy manualnym (drag and drop?), statystyka strzałów
+
+akcje na planszy: Klikniecie na guzik(onClick: sprawdzenie czy jest tam statek, jaki typ, pozostałe życie - wykonanie akcji:
+	Traf/Zatop/Pudło - zmiana koloru zależnie od akcji, disablowanie guzika, dodanie do statystyki(ilosc strzałów, ilość nietrafionych)
+ opcjonalnie: ustawianie statku: onClick:pierwsze i ostatnie pole?
+
+Statek: id, typ, ilość trafień max/aktualne
+
+Logika: Generowana jest plansza z podanym rozmiarem i ilością statków, statki są rozmieszczane (id statku przypisane do odp. guzików)
+	Rozpoczęcie gry. Użytkownik klika na guzik, w momencie kliknięcia wykonywana jest akcja strzał i sprawdzone czy trafione.
+	Jeżeli statek o podanym id ma aktualną ilość trafeń == max, zostaje zatopiony. Jeżeli nie, trafiony.
+	Po zatopieniu odejmujemy liczbę "żywych" statków i sprawdzamy czy jakieś jeszcze zostały. Jeżeli nie, koniec gry.
+	
+Komponenty: Start: przyjmuje dane wejściowe na temat planszy,statków
+            board: reprezentuje mapę gry, na niej umieszczamy statki
+            statek?
 
 
 
