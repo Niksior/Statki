@@ -1,46 +1,40 @@
-<label for="height"> Map Height </label>
-<p>
-  <input label="Map Height" id="height" type="number" min="0" max="50"/>
-</p>
+<form class="settings-form">
 
+  <mat-form-field class="settings-row">
+    <input [value]="height" id="height" matInput max="50" min="0" placeholder="Map Height" type="number"/>
+  </mat-form-field>
 
-<p>
-  <label for="width"> Map width </label>
-</p>
-<p>
-  <input label="Map width" id="width" type="number" min="0" max="50"/>
-</p>
+  <mat-form-field class="settings-row">
+    <input [value]="width" id="width" matInput max="50" min="0" placeholder="Map width" type="number"/>
+  </mat-form-field>
 
-<p>
-  <label for="shipNum"> Number of ships with 1 mast </label>
-</p>
-<p>
-  <input label="Number of ships" id="shipNum" type="number" min="0" max="50"/>
-</p>
-<p>
-  <label for="shipNum2"> Number of ships with 2 mast</label>
-</p>
-<p>
-  <input label="Number of ships" id="shipNum2" type="number" min="0" max="50"/>
-</p>
-<p>
-  <label for="shipNum3"> Number of ships with 3 mast</label>
-  </p>
-<p>
-  <input label="Number of ships" id="shipNum3" type="number" min="0" max="50"/>
-</p>
-<p>
-  <label for="shipNum4"> Number of ships with 4 mast</label>
-</p>
-<p>
-  <input label="Number of ships" id="shipNum4" type="number" min="0" max="50"/>
-</p>
-<p>
-  <label for="autoDeployment"> Auto or manual ship deployment? </label>
-</p>
-<p>
-  <input label="Auto ship deployment?" id="autoDeployment" type="checkbox"/>
-</p>
-<p>
-  <button  id="create" (click)="onClick()"> </button>
-</p>
+  <mat-form-field class="settings-row">
+    <input [value]="shipNum" id="shipNum" matInput max="50" min="0" placeholder="Number of ships with 1 mast"
+           type="number"/>
+  </mat-form-field>
+
+  <mat-form-field class="settings-row">
+    <input [value]="shipNum2" id="shipNum2" matInput max="50" min="0" placeholder="Number of ships with 2 mast"
+           type="number"/>
+  </mat-form-field>
+
+  <mat-form-field class="settings-row">
+    <input [value]="shipNum3" id="shipNum3" matInput max="50" min="0" placeholder="Number of ships with 3 mast"
+           type="number"/>
+  </mat-form-field>
+
+  <mat-form-field class="settings-row">
+    <input [value]="shipNum4" id="shipNum4" matInput max="50" min="0" placeholder="Number of ships with 4 mast"
+           type="number"/>
+  </mat-form-field>
+
+  <div>
+    <mat-checkbox [checked]="autoDeployment" labelPosition="before">Automatic deployment?</mat-checkbox>
+  </div>
+
+  <div>
+    <button (click)="onClick()" id="create" mat-icon-button>
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</form>

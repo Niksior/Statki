@@ -1,11 +1,1 @@
-<h1>{{title}}</h1>
-
-<ng-template ngIf="{{setting}}"></ng-template>
-<div *ngIf="setting.started == true; else elseBlock">
-  <app-board></app-board>
-</div>
-<ng-template #elseBlock>
-  <app-start></app-start>
-</ng-template>
-
-
+<app-navbar></app-navbar>

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Settings} from "./Settings";
 
 @Component({
   selector: 'app-root',
@@ -7,10 +6,11 @@ import {Settings} from "./Settings";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Statki';
-  setting : Settings;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.setting = new Settings();
+
   }
 }
