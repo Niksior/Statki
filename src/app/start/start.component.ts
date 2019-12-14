@@ -22,7 +22,6 @@ export class StartComponent {
   });
 
   height: string;
-  width: string;
   shipNum: string;
   shipNum2: string;
   shipNum3: string;
@@ -32,7 +31,6 @@ export class StartComponent {
   constructor(private fb: FormBuilder) {
     this.setting = null;
     this.height = '';
-    this.width = '';
     this.shipNum = '';
     this.shipNum2 = '';
     this.shipNum3 = '';
@@ -44,7 +42,6 @@ export class StartComponent {
     console.log(this.height);
     const settings = new Settings();
     settings.height = Number(this.height);
-    settings.width = +this.width;
     settings.oneMastShips = +this.shipNum;
     settings.twoMastShips = +this.shipNum2;
     settings.threeMastShips = +this.shipNum3;
@@ -57,6 +54,8 @@ export class StartComponent {
 
     const map = new Map(settings);
     console.log('TEST: settings: ' + JSON.stringify(map));
+    localStorage.setItem('settingsData', JSON.stringify(this.setting));
+    console.log('local storage: ' + localStorage.getItem('settingsData'));
   }
 
 }
