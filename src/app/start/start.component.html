@@ -1,7 +1,7 @@
-<form class="settings-form">
+<form [formGroup]="settingsForm" class="settings-form">
 
   <mat-form-field class="settings-row">
-    <input [value]="height" id="height" matInput max="50" min="0" placeholder="Map Height" type="number"/>
+    <input formControlName="size" id="height" matInput max="50" min="0" placeholder="Map Height" type="number"/>
   </mat-form-field>
 
   <mat-form-field class="settings-row">

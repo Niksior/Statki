@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {Settings} from '../_models/Settings';
+import {Map} from '../_models/Map';
+import {FormBuilder, Validators} from '@angular/forms';
 
 
 @Component({
@@ -10,6 +12,15 @@ import {Settings} from '../_models/Settings';
 export class StartComponent {
   setting: Settings | null;
 
+  settingsForm = this.fb.group({
+    size: [10, Validators.required],
+    shipNum: [0],
+    shipNum2: [0],
+    shipNum3: [0],
+    shipNum4: [0],
+    autoDeployment: [false]
+  });
+
   height: string;
   width: string;
   shipNum: string;
@@ -18,7 +29,7 @@ export class StartComponent {
   shipNum4: string;
   autoDeployment: boolean;
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
     this.setting = null;
     this.height = '';
     this.width = '';
@@ -30,21 +41,22 @@ export class StartComponent {
   }
 
   onClick() {
+    console.log(this.height);
     const settings = new Settings();
-    settings.height = parseInt((document.getElementById('height') as HTMLInputElement).value);
-    settings.width = parseInt((document.getElementById('width') as HTMLInputElement).value);
-    settings.oneMastShips = parseInt((document.getElementById('shipNum') as HTMLInputElement).value);
-    settings.twoMastShips = parseInt((document.getElementById('shipNum2') as HTMLInputElement).value);
-    settings.threeMastShips = parseInt((document.getElementById('shipNum3') as HTMLInputElement).value);
-    settings.fourMastShips = parseInt((document.getElementById('shipNum4') as HTMLInputElement).value);
-    settings.autoDeploy = (document.getElementById('autoDeployment') as HTMLInputElement).checked;
+    settings.height = Number(this.height);
+    settings.width = +this.width;
+    settings.oneMastShips = +this.shipNum;
+    settings.twoMastShips = +this.shipNum2;
+    settings.threeMastShips = +this.shipNum3;
+    settings.fourMastShips = +this.shipNum4;
+    settings.autoDeploy = this.autoDeployment;
     settings.started = true;
 
     console.log('TEST: settings: ' + JSON.stringify(settings));
     this.setting = settings;
 
-    // const map = new Map (settings);
-    // console.log('TEST: settings: ' + JSON.stringify( map ));
+    const map = new Map(settings);
+    console.log('TEST: settings: ' + JSON.stringify(map));
   }
 
 }
