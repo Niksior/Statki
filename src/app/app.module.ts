@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BoardComponent} from './board/board.component';
 import {StartComponent} from './start/start.component';
 import {
+  MatCardModule,
   MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
@@ -45,7 +46,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     MatInputModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
