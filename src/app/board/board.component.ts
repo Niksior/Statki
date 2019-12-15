@@ -27,24 +27,27 @@ export class BoardComponent {
     console.log('data: ' + settingData);
     this.map = new Mapa(data);
 
-    let oneMast = data.oneMastShips;
-    let twoMast = data.twoMastShips;
-    let threeMast = data.threeMastShips;
-    let fourMast = data.fourMastShips;
-    this.mapSize = data.size;
+    this.mapSize = this.map.size;
 
+    let oneMast = data.oneMastShips;
     for (let i = 0; i < oneMast; i++) {
       let ship = new Ship('1mast');
       this.ships.push(ship);
     }
+
+    let twoMast = data.twoMastShips;
     for (let i = 0; i < twoMast; i++) {
       let ship = new Ship('2mast');
       this.ships.push(ship);
     }
+
+    let threeMast = data.threeMastShips;
     for (let i = 0; i < threeMast; i++) {
       let ship = new Ship('3mast');
       this.ships.push(ship);
     }
+
+    let fourMast = data.fourMastShips;
     for (let i = 0; i < fourMast; i++) {
       let ship = new Ship('4mast');
       this.ships.push(ship);

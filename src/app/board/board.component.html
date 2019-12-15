@@ -1,4 +1,5 @@
-<div class="board">
+<div class="board" [style.grid-template-columns]="'repeat(' + mapSize + ',100px'"
+     [style.grid-template-rows]="'repeat(' + mapSize + ',100px'">
   <mat-card (click)="shoot(ship)" *ngFor="let ship of mapSize" class="myCard">
   </mat-card>
 </div>
