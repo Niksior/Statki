@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Settings} from '../_models/Settings';
 import {FormBuilder, Validators} from '@angular/forms';
-
+import {MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-start',
@@ -11,17 +12,17 @@ import {FormBuilder, Validators} from '@angular/forms';
 export class StartComponent {
 
   settingsForm = this.fb.group({
-    size: [10, Validators.required],
-    shipNum: [0],
-    shipNum2: [0],
-    shipNum3: [0],
-    shipNum4: [0],
+    size: [null, Validators.required],
+    shipNum: [null],
+    shipNum2: [null],
+    shipNum3: [null],
+    shipNum4: [null],
     autoDeployment: [false]
   });
 
-  constructor(private fb: FormBuilder) {
-    const settings = this.loadData();
-
+  constructor(private fb: FormBuilder,
+              private snackBar: MatSnackBar,
+              private router: Router) {
   }
 
   onSubmit() {
@@ -34,23 +35,13 @@ export class StartComponent {
     settings.autoDeploy = this.settingsForm.value.autoDeployment;
     settings.started = true;
     localStorage.setItem('settingsData', JSON.stringify(settings));
+    this.snackBar.open('Everything saved, redirecting...');
+    this.router.navigate(['/board']);
   }
 
   private loadData() {
     const savedSettings = localStorage.getItem('settingsData');
     return savedSettings ? JSON.parse(savedSettings) : null;
-  }
-
-  private loadSettings(settings: Settings) {
-    if (settings) {
-      this.settingsForm.value.size = settings.size;
-      this.settingsForm.value.shipNum = settings.oneMastShips;
-      this.settingsForm.value.shipNum2 = settings.twoMastShips;
-      this.settingsForm.value.shipNum3 = settings.threeMastShips;
-      this.settingsForm.value.shipNum4 = settings.fourMastShips;
-      this.settingsForm.value.autoDeployment = settings.autoDeploy;
-    }
-
   }
 
 }
