@@ -1,9 +1,8 @@
 import {Settings} from './Settings';
 
-export class Map {
+export class Mapa {
   constructor(settings: Settings) {
-    this._height = settings.height;
-    this._width = settings.width;
+    this._size = settings.size;
     this._oneMastShips = settings.oneMastShips;
     this._twoMastShips = settings.twoMastShips;
     this._threeMastShips = settings.threeMastShips;
@@ -16,24 +15,14 @@ export class Map {
   }
 
   // tslint:disable:variable-name
-  private _height: number;
+  private _size: number;
 
-  get height(): number {
-    return this._height;
+  get size(): number {
+    return this._size;
   }
 
-  set height(value: number) {
-    this._height = value;
-  }
-
-  private _width: number;
-
-  get width(): number {
-    return this._width;
-  }
-
-  set width(value: number) {
-    this._width = value;
+  set size(value: number) {
+    this._size = value;
   }
 
   private _maxShipNum: number;
@@ -126,7 +115,29 @@ export class Map {
     this._manualDeployment = value;
   }
 
+  // private cardByshipId : Map<number,Array<string>> | null;
+
+  // set setMapCardByShip (shipId : number, cardClass : string)
+  // {
+  //   if (this.cardByshipId == null)
+  //   {
+  //     return;
+  //   }
+  //
+  //   if( this.cardByshipId.size == 0)
+  //   {
+  //     this.cardByshipId.set(shipId, new Array<string>(cardClass));
+  //   }
+  //   else if( this.cardByshipId.size > 0)
+  //   {
+  //     if(this.cardByshipId.get(shipId) != null && this.cardByshipId.get(shipId) != undefined)
+  //     {
+  //       this.cardByshipId.get(shipId).push(cardClass);
+  //     }
+  //   }
+  // }
+
   countMaxShipNum() {
-    this._maxShipNum = (this._height * this._width) - (this._oneMastShips * 8 - this._twoMastShips * 10 - this._threeMastShips * 12 - this._fourMastShips * 14);
+    this._maxShipNum = (this._size * this._size) - (this._oneMastShips * 8 - this._twoMastShips * 10 - this._threeMastShips * 12 - this._fourMastShips * 14);
   }
 }

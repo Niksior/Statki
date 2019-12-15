@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Ship} from "../_models/Ship";
+import {Mapa} from "../_models/Mapa";
 
 @Component({
   selector: 'app-board',
@@ -10,51 +11,67 @@ export class BoardComponent {
 
   ships: Ship[];
   mapSize : number;
+  map : Mapa | null;
 
   constructor() {
-    var settingData = localStorage.getItem('settingsData');
-    var data;
+    let settingData = localStorage.getItem('settingsData');
+    let data;
     this.ships = [];
     this.mapSize = 10;
 
     if (settingData != null) {
       data = JSON.parse(settingData);
       console.log('data: ' + settingData);
+      this.map = new Mapa(data);
 
-      var oneMast = data.oneMastShips;
-      var twoMast = data.twoMastShips;
-      var threeMast = data.threeMastShips;
-      var fourMast = data.fourMastShips;
+      let oneMast = data.oneMastShips;
+      let twoMast = data.twoMastShips;
+      let threeMast = data.threeMastShips;
+      let fourMast = data.fourMastShips;
       this.mapSize = data.height;
 
       for (let i = 0; i < oneMast; i++) {
-        var ship = new Ship('1mast');
+        let ship = new Ship('1mast');
         this.ships.push(ship);
       }
       for (let i = 0; i < twoMast; i++) {
-        var ship = new Ship('2mast');
+        let ship = new Ship('2mast');
         this.ships.push(ship);
       }
       for (let i = 0; i < threeMast; i++) {
-        var ship = new Ship('3mast');
+        let ship = new Ship('3mast');
         this.ships.push(ship);
       }
       for (let i = 0; i < fourMast; i++) {
-        var ship = new Ship('4mast');
+        let ship = new Ship('4mast');
         this.ships.push(ship);
       }
+    }
+    else
+    {
+      this.map = null;
     }
   }
 
   shoot(ship: Ship) {
     console.log('on click card' + JSON.stringify(ship));
-    ship.shoot();
-    if (ship.shoots == ship.getLifeNum) {
-      alert('trafiony-zatopiony!');
-    } else if (ship.shoots < ship.getLifeNum) {
-      alert('trafiony!');
+    if (this.map != null)
+    {
+      this.map.shoots += 1;
+      if (ship == null)
+      {
+        this.map.missed += 1;
+        alert('pudło');
+
+        return;
+      }
+
+      ship.shoot();
+      if (ship.shoots == ship.getLifeNum) {
+        alert('trafiony-zatopiony!');
+      } else if (ship.shoots < ship.getLifeNum) {
+        alert('trafiony!');
+      }
     }
-
   }
-
 }
