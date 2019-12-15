@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BoardComponent} from './board/board.component';
 import {StartComponent} from './start/start.component';
 import {
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatCardModule,
   MatCheckboxModule,
   MatFormFieldModule,
@@ -14,6 +15,7 @@ import {
   MatMenuModule,
   MatSelectModule,
   MatSidenavModule,
+  MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -47,9 +49,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatInputModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
