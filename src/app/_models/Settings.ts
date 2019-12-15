@@ -1,7 +1,6 @@
 export class Settings {
   constructor() {
-    this._width = 0;
-    this._height = 0;
+    this._size = 0;
     this._autoDeploy = false;
     this._oneMastShips = 0;
     this._twoMastShips = 0;
@@ -11,24 +10,14 @@ export class Settings {
   }
 
   // tslint:disable:variable-name
-  private _width: number;
+  private _size: number;
 
-  get width(): number {
-    return this._width;
+  get size(): number {
+    return this._size;
   }
 
-  set width(value: number) {
-    this._width = value;
-  }
-
-  private _height: number;
-
-  get height(): number {
-    return this._height;
-  }
-
-  set height(value: number) {
-    this._height = value;
+  set size(value: number) {
+    this._size = value;
   }
 
   private _autoDeploy: boolean;

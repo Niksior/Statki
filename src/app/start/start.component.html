@@ -1,35 +1,35 @@
-<form [formGroup]="settingsForm" class="settings-form">
+<form (ngSubmit)="onSubmit()" [formGroup]="settingsForm" class="settings-form" novalidate>
 
   <mat-form-field class="settings-row">
-    <input formControlName="size" id="height" matInput max="50" min="0" placeholder="Map Height" type="number"/>
+    <input formControlName="size" matInput max="50" min="0" placeholder="Map Height" type="number"/>
   </mat-form-field>
 
   <mat-form-field class="settings-row">
-    <input [value]="shipNum" id="shipNum" matInput max="50" min="0" placeholder="Number of ships with 1 mast"
+    <input formControlName="shipNum" matInput max="50" min="0" placeholder="Number of ships with 1 mast"
            type="number"/>
   </mat-form-field>
 
   <mat-form-field class="settings-row">
-    <input [value]="shipNum2" id="shipNum2" matInput max="50" min="0" placeholder="Number of ships with 2 mast"
+    <input formControlName="shipNum2" matInput max="50" min="0" placeholder="Number of ships with 2 mast"
            type="number"/>
   </mat-form-field>
 
   <mat-form-field class="settings-row">
-    <input [value]="shipNum3" id="shipNum3" matInput max="50" min="0" placeholder="Number of ships with 3 mast"
+    <input formControlName="shipNum3" matInput max="50" min="0" placeholder="Number of ships with 3 mast"
            type="number"/>
   </mat-form-field>
 
   <mat-form-field class="settings-row">
-    <input [value]="shipNum4" id="shipNum4" matInput max="50" min="0" placeholder="Number of ships with 4 mast"
+    <input formControlName="shipNum4" matInput max="50" min="0" placeholder="Number of ships with 4 mast"
            type="number"/>
   </mat-form-field>
 
   <div>
-    <mat-checkbox [checked]="autoDeployment" labelPosition="before">Automatic deployment?</mat-checkbox>
+    <mat-checkbox formControlName="autoDeployment" labelPosition="before">Automatic deployment?</mat-checkbox>
   </div>
 
   <div>
-    <button (click)="onClick()" id="create" mat-icon-button>
+    <button mat-icon-button type="submit">
       <mat-icon>save</mat-icon>
     </button>
   </div>
