@@ -1,68 +1,63 @@
-export class Ship
-{
-  private id: number;
+export class Ship {
+  constructor(type: string) {
+    this._type = type;
+    if (type === '4mast') {
+      this._lifeNum = 4;
+    } else if (type === '3mast') {
+      this._lifeNum = 3;
+    } else if (type === '2mast') {
+      this._lifeNum = 2;
 
-  get getid(): number {
-    return this.id;
-  }
-  set setId( id : number) {
-    this.id = id;
-  }
-
-  type : string;
-   get getType() : string
-   {
-     return this.type;
-   }
-
-   set settype( type : string )
-   {
-     this.type = type;
-   }
-
-  lifeNum : number;
-  get getLifeNum() : number
-  {
-    return this.lifeNum;
+    } else {
+      this._lifeNum = 1;
+    }
+    this._id = Math.random();
+    this._shoots = 0;
   }
 
-  set setLifeNum( num : number )
-  {
-    this.lifeNum = num;
+  // tslint:disable:variable-name
+  private _id: number;
+
+  get id(): number {
+    return this._id;
   }
 
-  shoots : number;
-
-  get getShoots() : number
-  {
-    return this.shoots;
+  set id(value: number) {
+    this._id = value;
   }
 
-  public shoot()
-  {
-    this.shoots = this.getShoots + 1;
+  private _type: string;
+
+  get type(): string {
+    return this._type;
   }
 
-  constructor(type : string) {
-      this.type = type;
-      if (type == '4mast')
-      {
-        this.lifeNum  = 4;
-      }
-      else if ( type == '3mast')
-      {
-        this.lifeNum  = 3;
-      }
-      else if ( type == '2mast')
-      {
-        this.lifeNum  = 2;
+  set type(value: string) {
+    this._type = value;
+  }
 
-      }
-      else {
-        this.lifeNum  = 1;
-      }
-      this.id = Math.random();
-      this.shoots = 0;
+  private _lifeNum: number;
+
+  get lifeNum(): number {
+    return this._lifeNum;
+  }
+
+  set lifeNum(value: number) {
+    this._lifeNum = value;
+  }
+
+  private _shoots: number;
+
+  get shoots(): number {
+    return this._shoots;
+  }
+
+  set shoots(value: number) {
+    this._shoots = value;
+  }
+
+  public shoot() {
+    this._shoots = this._shoots + 1;
   }
 
 

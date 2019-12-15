@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {Ship} from "../_models/Ship";
-import {Mapa} from "../_models/Mapa";
+import {Ship} from '../_models/Ship';
+import {Mapa} from '../_models/Mapa';
 
 @Component({
   selector: 'app-board',
