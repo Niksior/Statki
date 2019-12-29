@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {Ship} from '../_models/Ship';
 import {Mapa} from '../_models/Mapa';
+import {Settings} from '../_models/Settings';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-board',
@@ -10,46 +13,39 @@ import {Mapa} from '../_models/Mapa';
 export class BoardComponent {
 
   ships: Ship[];
-  mapSize: number;
   map: Mapa | null;
+  settings: Settings;
 
-  constructor() {
-    let settingData = localStorage.getItem('settingsData');
+  constructor(private router: Router,
+              private snackBar: MatSnackBar) {
+    const settingData = localStorage.getItem('settingsData');
+    this.settings = new Settings();
     this.ships = [];
-    this.mapSize = 10;
 
-    if (settingData == null) {
-      this.map = null;
-      return;
-    }
+    settingData ? this.settings.loadFromStorage(JSON.parse(settingData)) : this.router.navigate(['/']);
+    this.map = new Mapa(this.settings);
 
-    let data = JSON.parse(settingData);
-    console.log('data: ' + settingData);
-    this.map = new Mapa(data);
-
-    this.mapSize = this.map.size;
-
-    let oneMast = data.oneMastShips;
+    const oneMast = this.map.oneMastShips;
     for (let i = 0; i < oneMast; i++) {
-      let ship = new Ship('1mast');
+      const ship = new Ship('1mast');
       this.ships.push(ship);
     }
 
-    let twoMast = data.twoMastShips;
+    const twoMast = this.map.twoMastShips;
     for (let i = 0; i < twoMast; i++) {
-      let ship = new Ship('2mast');
+      const ship = new Ship('2mast');
       this.ships.push(ship);
     }
 
-    let threeMast = data.threeMastShips;
+    const threeMast = this.map.threeMastShips;
     for (let i = 0; i < threeMast; i++) {
-      let ship = new Ship('3mast');
+      const ship = new Ship('3mast');
       this.ships.push(ship);
     }
 
-    let fourMast = data.fourMastShips;
+    const fourMast = this.map.fourMastShips;
     for (let i = 0; i < fourMast; i++) {
-      let ship = new Ship('4mast');
+      const ship = new Ship('4mast');
       this.ships.push(ship);
     }
   }
@@ -60,16 +56,15 @@ export class BoardComponent {
       this.map.shoots += 1;
       if (ship == null) {
         this.map.missed += 1;
-        alert('pudło');
-
+        this.snackBar.open('Ups');
         return;
       }
 
       ship.shoot();
-      if (ship.shoots == ship.getLifeNum) {
-        alert('trafiony-zatopiony!');
-      } else if (ship.shoots < ship.getLifeNum) {
-        alert('trafiony!');
+      if (ship.shoots === ship.lifeNum) {
+        this.snackBar.open('Zatopiony');
+      } else if (ship.shoots < ship.lifeNum) {
+        this.snackBar.open('Trafiony');
       }
     }
   }

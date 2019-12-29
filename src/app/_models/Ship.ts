@@ -21,7 +21,7 @@ export class Ship {
     //     this._lifeNum = 1;
     //     break;
     // }
-    // ziomek z wykladu powiedzial, ze polimorfizm a nie ify jebane
+    // ziomek z wykladu powiedzial, ze polimorfizm a nie ify
     if (type === '4mast') {
       this._lifeNum = 4;
     } else if (type === '3mast') {
@@ -32,7 +32,7 @@ export class Ship {
       this._lifeNum = 1;
     }
 
-    this._id = Math.random();
+    this._id = Math.floor(Math.random() * 100 % 100);
     this._shoots = 0;
   }
 

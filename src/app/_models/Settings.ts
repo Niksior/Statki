@@ -79,4 +79,14 @@ export class Settings {
   set started(value: boolean) {
     this._started = value;
   }
+
+  public loadFromStorage(data: any) {
+    this._size = data._size;
+    this._autoDeploy = data._autoDeploy;
+    this._oneMastShips = data._oneMastShips;
+    this._twoMastShips = data._twoMastShips;
+    this._threeMastShips = data._threeMastShips;
+    this._fourMastShips = data._fourMastShips;
+    this._started = data._started;
+  }
 }

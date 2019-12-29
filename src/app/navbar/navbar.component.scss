@@ -3,7 +3,12 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 5%;
+
+  .settings {
+    position: absolute;
+    bottom: 0;
+  }
 }
 
 .sidenav .mat-toolbar {

@@ -33,15 +33,15 @@ export class StartComponent {
     settings.threeMastShips = this.settingsForm.value.shipNum3;
     settings.fourMastShips = this.settingsForm.value.shipNum4;
     settings.autoDeploy = this.settingsForm.value.autoDeployment;
-    settings.started = true;
     localStorage.setItem('settingsData', JSON.stringify(settings));
-    this.snackBar.open('Everything saved, redirecting...');
+    this.snackBar.open('Game launched');
     this.router.navigate(['/board']);
   }
 
-  private loadData() {
-    const savedSettings = localStorage.getItem('settingsData');
-    return savedSettings ? JSON.parse(savedSettings) : null;
-  }
+  // i tak nie dziala wczytywanie
+  // private loadData() {
+  //   const savedSettings = localStorage.getItem('settingsData');
+  //   return savedSettings ? JSON.parse(savedSettings) : null;
+  // }
 
 }

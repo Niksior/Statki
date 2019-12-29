@@ -12,7 +12,7 @@ export class Mapa {
     this._missed = 0;
     this._liveShips = 0;
     this._maxShipNum = 0;
-    this.cardByshipId = new Map<number,string[]>()
+    this.cardByshipId = new Map<number, string[]>();
   }
 
   // tslint:disable:variable-name

@@ -1,5 +1,8 @@
-<div class="board" [style.grid-template-columns]="'repeat(' + mapSize + ',100px'"
-     [style.grid-template-rows]="'repeat(' + mapSize + ',100px'">
-  <mat-card (click)="shoot(ship)" *ngFor="let ship of mapSize" class="myCard">
-  </mat-card>
+<div [style.grid-template-columns]="'repeat(' + map.size + ',100px'"
+     [style.grid-template-rows]="'repeat(' + map.size + ',100px'"
+     class="board">
+
+  //tu jest error, trzeba ogarnac robienie planszy, kazdego pola z osobna, a nie tylko statow
+  <mat-card (click)="shoot(ship)" *ngFor="let ship of ships" class="myCard"></mat-card>
+
 </div>
