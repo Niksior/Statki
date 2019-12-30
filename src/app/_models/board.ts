@@ -1,6 +1,6 @@
-import {Settings} from './Settings';
+import {Settings} from './settings';
 
-export class Mapa {
+export class Board {
   constructor(settings: Settings) {
     this._size = settings.size;
     this._oneMastShips = settings.oneMastShips;

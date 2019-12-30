@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {Ship} from '../_models/Ship';
-import {Mapa} from '../_models/Mapa';
-import {Settings} from '../_models/Settings';
+import {Board} from '../_models/board';
+import {Settings} from '../_models/settings';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import {Ship} from '../_interfaces/ship';
 
 @Component({
   selector: 'app-board',
@@ -13,7 +13,7 @@ import {MatSnackBar} from '@angular/material';
 export class BoardComponent {
 
   ships: Ship[];
-  map: Mapa | null;
+  map: Board | null;
   settings: Settings;
 
   constructor(private router: Router,
@@ -23,7 +23,7 @@ export class BoardComponent {
     this.ships = [];
 
     settingData ? this.settings.loadFromStorage(JSON.parse(settingData)) : this.router.navigate(['/']);
-    this.map = new Mapa(this.settings);
+    this.map = new Board(this.settings);
 
     const oneMast = this.map.oneMastShips;
     for (let i = 0; i < oneMast; i++) {

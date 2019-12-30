@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Settings} from '../_models/Settings';
+import {Settings} from '../_models/settings';
 
 @Component({
   selector: 'app-navbar',

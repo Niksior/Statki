@@ -6,7 +6,6 @@ export class Settings {
     this._twoMastShips = 0;
     this._threeMastShips = 0;
     this._fourMastShips = 0;
-    this._started = false;
   }
 
   // tslint:disable:variable-name
@@ -70,16 +69,6 @@ export class Settings {
     this._fourMastShips = value;
   }
 
-  private _started: boolean;
-
-  get started(): boolean {
-    return this._started;
-  }
-
-  set started(value: boolean) {
-    this._started = value;
-  }
-
   public loadFromStorage(data: any) {
     this._size = data._size;
     this._autoDeploy = data._autoDeploy;
@@ -87,6 +76,5 @@ export class Settings {
     this._twoMastShips = data._twoMastShips;
     this._threeMastShips = data._threeMastShips;
     this._fourMastShips = data._fourMastShips;
-    this._started = data._started;
   }
 }

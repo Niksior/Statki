@@ -1,5 +1,16 @@
 # Statki
 
+## Changelog
+30.12.2019:
+- Dodane zostało od cholery klas
+- W przypadku dodania nowej sugerować się screenem `suggestion.png`
+- Należy dodać obsługę planszy poprzez narysowanie klas pól typu `Field`
+- Klasa typu `Sheip` musi rozszerzeać typ `Field`
+- Tak, zwalone jest wczytywanie z local storage do klasy, dlatego doobiłem wczytywacz dla ustawień
+* Resztę ogarniesz w kodzie
+* Klasa `ShipOld` została tylko na chwilę, ! do wywalenia jest !
+
+![Suggestion](suggestion.png)
 ## Klasy:
 plansza:
 Parametry: rozmiar pola, typ i ilość statków, ilość "żywych" statków, manualne rozmieszczenie/auto,

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Settings} from '../_models/Settings';
+import {Settings} from '../_models/settings';
 import {FormBuilder, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';

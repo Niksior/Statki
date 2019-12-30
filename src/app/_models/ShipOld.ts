@@ -1,4 +1,4 @@
-export class Ship {
+export class ShipOld {
 
   constructor(type: string) {
 
