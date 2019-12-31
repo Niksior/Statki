@@ -4,4 +4,6 @@ export interface Ship {
   shipType: ShipType;
   id: number;
   hp: number;
+
+  hit(): void;
 }

@@ -9,7 +9,7 @@ export class Settings {
   }
 
   // tslint:disable:variable-name
-  private _size: number;
+  protected _size: number;
 
   get size(): number {
     return this._size;
@@ -19,7 +19,7 @@ export class Settings {
     this._size = value;
   }
 
-  private _autoDeploy: boolean;
+  protected _autoDeploy: boolean;
 
   get autoDeploy(): boolean {
     return this._autoDeploy;
@@ -29,7 +29,7 @@ export class Settings {
     this._autoDeploy = value;
   }
 
-  private _oneMastShips: number;
+  protected _oneMastShips: number;
 
   get oneMastShips(): number {
     return this._oneMastShips;
@@ -39,7 +39,7 @@ export class Settings {
     this._oneMastShips = value;
   }
 
-  private _twoMastShips: number;
+  protected _twoMastShips: number;
 
   get twoMastShips(): number {
     return this._twoMastShips;
@@ -49,7 +49,7 @@ export class Settings {
     this._twoMastShips = value;
   }
 
-  private _threeMastShips: number;
+  protected _threeMastShips: number;
 
   get threeMastShips(): number {
     return this._threeMastShips;
@@ -59,7 +59,7 @@ export class Settings {
     this._threeMastShips = value;
   }
 
-  private _fourMastShips: number;
+  protected _fourMastShips: number;
 
   get fourMastShips(): number {
     return this._fourMastShips;

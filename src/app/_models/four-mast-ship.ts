@@ -2,7 +2,6 @@ import {Ship} from '../_interfaces/ship';
 import {ShipType} from '../_enums/ship-type.enum';
 
 export class FourMastShip implements Ship {
-
   id: number;
   shipType: ShipType;
   hp: number;
@@ -11,6 +10,10 @@ export class FourMastShip implements Ship {
     this.shipType = ShipType.FourMast;
     this.hp = ShipType.FourMast;
     this.id = id;
+  }
+
+  hit(): void {
+    this.hp > 0 ? this.hp-- : this.hp = 0;
   }
 
 

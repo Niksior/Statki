@@ -4,6 +4,10 @@ import {Settings} from '../_models/settings';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {Ship} from '../_interfaces/ship';
+import {OneMastShip} from '../_models/one-mast-ship';
+import {TwoMastShip} from '../_models/two-mast-ship';
+import {ThreeMastShip} from '../_models/three-mast-ship';
+import {FourMastShip} from '../_models/four-mast-ship';
 
 @Component({
   selector: 'app-board',
@@ -13,59 +17,62 @@ import {Ship} from '../_interfaces/ship';
 export class BoardComponent {
 
   ships: Ship[];
-  map: Board | null;
+  board: Board;
   settings: Settings;
 
   constructor(private router: Router,
               private snackBar: MatSnackBar) {
+
     const settingData = localStorage.getItem('settingsData');
     this.settings = new Settings();
     this.ships = [];
 
     settingData ? this.settings.loadFromStorage(JSON.parse(settingData)) : this.router.navigate(['/']);
-    this.map = new Board(this.settings);
+    this.board = new Board(this.settings);
 
-    const oneMast = this.map.oneMastShips;
-    for (let i = 0; i < oneMast; i++) {
-      const ship = new Ship('1mast');
-      this.ships.push(ship);
-    }
+    this.generateShips();
 
-    const twoMast = this.map.twoMastShips;
-    for (let i = 0; i < twoMast; i++) {
-      const ship = new Ship('2mast');
-      this.ships.push(ship);
-    }
-
-    const threeMast = this.map.threeMastShips;
-    for (let i = 0; i < threeMast; i++) {
-      const ship = new Ship('3mast');
-      this.ships.push(ship);
-    }
-
-    const fourMast = this.map.fourMastShips;
-    for (let i = 0; i < fourMast; i++) {
-      const ship = new Ship('4mast');
-      this.ships.push(ship);
-    }
   }
 
   shoot(ship: Ship) {
-    console.log('on click card' + JSON.stringify(ship));
-    if (this.map != null) {
-      this.map.shoots += 1;
-      if (ship == null) {
-        this.map.missed += 1;
-        this.snackBar.open('Ups');
-        return;
-      }
+    this.board.shoots++;
+    if (ship == null) {
+      this.board.missed++;
+      this.snackBar.open('Missed');
+      return;
+    }
 
-      ship.shoot();
-      if (ship.shoots === ship.lifeNum) {
-        this.snackBar.open('Zatopiony');
-      } else if (ship.shoots < ship.lifeNum) {
-        this.snackBar.open('Trafiony');
-      }
+    ship.shoot();
+    if (ship.shoots === ship.lifeNum) {
+      this.snackBar.open('Zatopiony');
+    } else if (ship.shoots < ship.lifeNum) {
+      this.snackBar.open('Trafiony');
+    }
+  }
+
+  private generateShips(): void {
+    const numberOfOneMastShips = this.board.oneMastShips;
+    for (let i = 0; i < numberOfOneMastShips; i++) {
+      const ship = new OneMastShip(Math.floor(Math.random() * 100 % 100));
+      this.ships.push(ship);
+    }
+
+    const numberOfTwoMastShips = this.board.twoMastShips;
+    for (let i = 0; i < numberOfTwoMastShips; i++) {
+      const ship = new TwoMastShip(Math.floor(Math.random() * 100 % 100));
+      this.ships.push(ship);
+    }
+
+    const numberOfThreeMastShips = this.board.threeMastShips;
+    for (let i = 0; i < numberOfThreeMastShips; i++) {
+      const ship = new ThreeMastShip(Math.floor(Math.random() * 100 % 100));
+      this.ships.push(ship);
+    }
+
+    const numberOfFourMastShips = this.board.fourMastShips;
+    for (let i = 0; i < numberOfFourMastShips; i++) {
+      const ship = new FourMastShip(Math.floor(Math.random() * 100 % 100));
+      this.ships.push(ship);
     }
   }
 }
