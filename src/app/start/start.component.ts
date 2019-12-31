@@ -38,10 +38,4 @@ export class StartComponent {
     this.router.navigate(['/board']);
   }
 
-  // i tak nie dziala wczytywanie
-  // private loadData() {
-  //   const savedSettings = localStorage.getItem('settingsData');
-  //   return savedSettings ? JSON.parse(savedSettings) : null;
-  // }
-
 }
