@@ -4,6 +4,11 @@ import {Settings} from '../_models/settings';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {Ship} from '../_interfaces/ship';
+import {ShipType} from "../_enums/ship-type.enum";
+import {ThreeMastShip} from "../_models/three-mast-ship";
+import {FourMastShip} from "../_models/four-mast-ship";
+import {TwoMastShip} from "../_models/two-mast-ship";
+import {OneMastShip} from "../_models/one-mast-ship";
 
 @Component({
   selector: 'app-board',
@@ -27,25 +32,25 @@ export class BoardComponent {
 
     const oneMast = this.map.oneMastShips;
     for (let i = 0; i < oneMast; i++) {
-      const ship = new Ship('1mast');
+      const ship = new OneMastShip(ShipType.OneMast);
       this.ships.push(ship);
     }
 
     const twoMast = this.map.twoMastShips;
     for (let i = 0; i < twoMast; i++) {
-      const ship = new Ship('2mast');
+      const ship = new TwoMastShip(ShipType.TwoMast);
       this.ships.push(ship);
     }
 
     const threeMast = this.map.threeMastShips;
     for (let i = 0; i < threeMast; i++) {
-      const ship = new Ship('3mast');
+      const ship = new ThreeMastShip(ShipType.ThreeMast);
       this.ships.push(ship);
     }
 
     const fourMast = this.map.fourMastShips;
     for (let i = 0; i < fourMast; i++) {
-      const ship = new Ship('4mast');
+      const ship = new FourMastShip(ShipType.FourMast);
       this.ships.push(ship);
     }
   }
@@ -61,9 +66,9 @@ export class BoardComponent {
       }
 
       ship.shoot();
-      if (ship.shoots === ship.lifeNum) {
+      if (ship.hp == 0) {
         this.snackBar.open('Zatopiony');
-      } else if (ship.shoots < ship.lifeNum) {
+      } else if (ship.hp > 0) {
         this.snackBar.open('Trafiony');
       }
     }

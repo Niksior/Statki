@@ -8,9 +8,13 @@ export class FourMastShip implements Ship {
   hp: number;
 
   constructor(id: number) {
-    this.shipType = ShipType.FourMast;
-    this.hp = ShipType.FourMast;
+    this.shipType = ShipType.OneMast;
+    this.hp = ShipType.OneMast;
     this.id = id;
+  }
+
+  shoot() {
+    this.hp -= 1;
   }
 
 

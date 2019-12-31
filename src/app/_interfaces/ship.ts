@@ -4,4 +4,7 @@ export interface Ship {
   shipType: ShipType;
   id: number;
   hp: number;
+
+  // @ts-ignore
+  shoot();
 }

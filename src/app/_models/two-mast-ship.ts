@@ -13,4 +13,7 @@ export class TwoMastShip implements Ship {
     this.id = id;
   }
 
+  shoot() {
+    this.hp -= 1;
+  }
 }
