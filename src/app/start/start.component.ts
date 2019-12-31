@@ -17,7 +17,7 @@ export class StartComponent {
     shipNum2: [null],
     shipNum3: [null],
     shipNum4: [null],
-    autoDeployment: [false]
+    autoDeployment: [true]
   });
 
   constructor(private fb: FormBuilder,

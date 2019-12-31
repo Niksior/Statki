@@ -1,4 +1,5 @@
 import {Settings} from './settings';
+import {Field} from './field';
 
 export class Board extends Settings {
 
@@ -13,9 +14,21 @@ export class Board extends Settings {
     this._shoots = 0;
     this._missed = 0;
     this._liveShips = this._oneMastShips + this._twoMastShips + this._threeMastShips + this._fourMastShips;
+    this._fields = [];
+    this.generateFields();
   }
 
   // tslint:disable:variable-name
+
+  private _fields: Field[];
+
+  get fields(): Field[] {
+    return this._fields;
+  }
+
+  set fields(value: Field[]) {
+    this._fields = value;
+  }
 
   /*private _maxShipNum: number;
 
@@ -97,4 +110,13 @@ export class Board extends Settings {
   /*countMaxShipNum() {
     this._maxShipNum = (this._size * this._size) - (this._oneMastShips * 8 - this._twoMastShips * 10 - this._threeMastShips * 12 - this._fourMastShips * 14);
   }*/
+
+  private generateFields() {
+    for (let i = 0; i < this._size; i++) {
+      for (let j = 0; j < this._size; j++) {
+        const field = new Field(j, i);
+        this._fields.push(field);
+      }
+    }
+  }
 }

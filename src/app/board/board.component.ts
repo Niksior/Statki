@@ -8,6 +8,7 @@ import {OneMastShip} from '../_models/one-mast-ship';
 import {TwoMastShip} from '../_models/two-mast-ship';
 import {ThreeMastShip} from '../_models/three-mast-ship';
 import {FourMastShip} from '../_models/four-mast-ship';
+import {Field} from '../_models/field';
 
 @Component({
   selector: 'app-board',
@@ -31,24 +32,40 @@ export class BoardComponent {
     this.board = new Board(this.settings);
 
     this.generateShips();
-
+    this.addShipsToBoard();
   }
 
-  shoot(ship: Ship) {
+  private static getRandomInt(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  shoot(field: Field) {
     this.board.shoots++;
-    if (ship == null) {
-      this.board.missed++;
-      this.snackBar.open('Missed');
-      return;
-    }
+    if (!field.isShot) {
+      field.isShot = true;
+      if (!field.hasShip) {
+        this.board.missed++;
+        this.snackBar.open('Pudło');
+        return;
+      }
 
-    ship.hit();
-    if (ship.hp === 0) {
-      this.snackBar.open('Zatopiony');
-    } else if (ship.hp < ship.shipType) {
-      this.snackBar.open('Trafiony');
+
+      for (const ship of this.ships) {
+        if (ship.id === field.shipId) {
+          ship.hp--;
+          if (ship.hp === 0) {
+            this.snackBar.open('Zatopiony');
+          } else {
+            this.snackBar.open('Trafiony');
+          }
+          return;
+        }
+      }
     }
   }
+
 
   private generateShips(): void {
     const numberOfOneMastShips = this.board.oneMastShips;
@@ -75,4 +92,35 @@ export class BoardComponent {
       this.ships.push(ship);
     }
   }
+
+  private addShipsToBoard(): void {
+    if (this.ships.length <= 0) {
+      return;
+    }
+    for (const ship of this.ships) {
+      let yPos = BoardComponent.getRandomInt(0, this.board.size) * this.board.size;
+      let xPos = BoardComponent.getRandomInt(0, (this.board.size - ship.shipType));
+      while (!this.checkIfFieldsAreFree(xPos, yPos, ship.shipType)) {
+        yPos = BoardComponent.getRandomInt(0, this.board.size) * this.board.size;
+        xPos = BoardComponent.getRandomInt(0, (this.board.size - ship.shipType));
+      }
+      this.placeShip(xPos, yPos, ship);
+    }
+  }
+
+  private placeShip(xPos: number, yPos: number, ship: Ship): void {
+    for (let i = 0; i < ship.shipType; i++) {
+      this.board.fields[yPos + xPos + i].shipId = ship.id;
+    }
+  }
+
+  private checkIfFieldsAreFree(x: number, y: number, length: number): boolean {
+    for (let i = 0; i < length; i++) {
+      if (this.board.fields[y + x].hasShip) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }

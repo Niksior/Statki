@@ -1,12 +1,12 @@
 export class Field {
 
 
-  constructor(shipId: number | null, x: number, y: number) {
-    this._shipId = shipId;
+  constructor(x: number, y: number) {
+    this._shipId = null;
     this._x = x;
     this._y = y;
     this._isShot = false;
-    this._hasShip = (this._shipId !== null);
+    this._hasShip = false;
   }
 
 // tslint:disable:variable-name
@@ -18,6 +18,7 @@ export class Field {
 
   set shipId(value: number | null) {
     this._shipId = value;
+    this._hasShip = (this._shipId !== null);
   }
 
   private _x: number;
