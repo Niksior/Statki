@@ -42,10 +42,10 @@ export class BoardComponent {
       return;
     }
 
-    ship.shoot();
-    if (ship.shoots === ship.lifeNum) {
+    ship.hit();
+    if (ship.hp === 0) {
       this.snackBar.open('Zatopiony');
-    } else if (ship.shoots < ship.lifeNum) {
+    } else if (ship.hp < ship.shipType) {
       this.snackBar.open('Trafiony');
     }
   }
