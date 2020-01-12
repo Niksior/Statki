@@ -1,9 +1,9 @@
 import {ShipType} from '../_enums/ship-type.enum';
 
-export interface Ship {
+export interface ShipInterface {
   shipType: ShipType;
   id: number;
-  hp: number;
+  hitPoints: number;
 
   hit(): void;
 }

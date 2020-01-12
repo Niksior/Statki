@@ -1,38 +1,9 @@
 # Statki
 
-## Changelog
-30.12.2019:
-- Dodane zostało od cholery klas
-- W przypadku dodania nowej sugerować się screenem `suggestion.png`
-- Należy dodać obsługę planszy poprzez narysowanie klas pól typu `Field`
-- Klasa typu `Sheip` musi rozszerzeać typ `Field`
-- Tak, zwalone jest wczytywanie z local storage do klasy, dlatego doobiłem wczytywacz dla ustawień
-* Resztę ogarniesz w kodzie
-* Klasa `ShipOld` została tylko na chwilę, ! do wywalenia jest !
-
-![Suggestion](suggestion.png)
-## Klasy:
-plansza:
-Parametry: rozmiar pola, typ i ilość statków, ilość "żywych" statków, manualne rozmieszczenie/auto,
-	 przy manualnym (drag and drop?), statystyka strzałów
-
-akcje na planszy: Klikniecie na guzik(onClick: sprawdzenie czy jest tam statek, jaki typ, pozostałe życie - wykonanie akcji:
-	Traf/Zatop/Pudło - zmiana koloru zależnie od akcji, disablowanie guzika, dodanie do statystyki(ilosc strzałów, ilość nietrafionych)
- opcjonalnie: ustawianie statku: onClick:pierwsze i ostatnie pole?
-
-Statek: id, typ, ilość trafień max/aktualne
-
-Logika: Generowana jest plansza z podanym rozmiarem i ilością statków, statki są rozmieszczane (id statku przypisane do odp. guzików)
-	Rozpoczęcie gry. Użytkownik klika na guzik, w momencie kliknięcia wykonywana jest akcja strzał i sprawdzone czy trafione.
-	Jeżeli statek o podanym id ma aktualną ilość trafeń == max, zostaje zatopiony. Jeżeli nie, trafiony.
-	Po zatopieniu odejmujemy liczbę "żywych" statków i sprawdzamy czy jakieś jeszcze zostały. Jeżeli nie, koniec gry.
-	
-Komponenty: Start: przyjmuje dane wejściowe na temat planszy,statków
-            board: reprezentuje mapę gry, na niej umieszczamy statki
-            statek?
-
-
-
+# Achtung
+- zmienić układ klas na statki i puste statki, statek zawiera field
+- ~~statystyki do osobnej klasy~~
+- nazwenictwo zmiennych
 
 # Statki
 

@@ -11,9 +11,6 @@ export class Board extends Settings {
     this._threeMastShips = settings.threeMastShips;
     this._fourMastShips = settings.fourMastShips;
     this._size = settings.size;
-    this._shoots = 0;
-    this._missed = 0;
-    this._liveShips = this._oneMastShips + this._twoMastShips + this._threeMastShips + this._fourMastShips;
     this._fields = [];
     this.generateFields();
   }
@@ -30,41 +27,10 @@ export class Board extends Settings {
     this._fields = value;
   }
 
-  private _shoots: number;
-
-  get shoots(): number {
-    return this._shoots;
-  }
-
-  set shoots(value: number) {
-    this._shoots = value;
-  }
-
-  private _missed: number;
-
-  get missed(): number {
-    return this._missed;
-  }
-
-  set missed(value: number) {
-    this._missed = value;
-  }
-
-  private _liveShips: number;
-
-  get liveShips(): number {
-    return this._liveShips;
-  }
-
-  set liveShips(value: number) {
-    this._liveShips = value;
-  }
-
   private generateFields() {
-    for (let i = 0; i < this._size; i++) {
-      for (let j = 0; j < this._size; j++) {
-        const field = new Field(j, i);
-        this._fields.push(field);
+    for (let row = 0; row < this._size; row++) {
+      for (let column = 0; column < this._size; column++) {
+        this._fields.push(new Field(column, row));
       }
     }
   }

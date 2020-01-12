@@ -3,12 +3,11 @@ import {Board} from '../_models/board';
 import {Settings} from '../_models/settings';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
-import {Ship} from '../_interfaces/ship';
-import {OneMastShip} from '../_models/one-mast-ship';
-import {TwoMastShip} from '../_models/two-mast-ship';
-import {ThreeMastShip} from '../_models/three-mast-ship';
-import {FourMastShip} from '../_models/four-mast-ship';
+import {ShipInterface} from '../_interfaces/ship-interface';
+import {Ship} from '../_models/ship';
 import {Field} from '../_models/field';
+import {Statistics} from '../_models/statistics';
+import {ShipType} from '../_enums/ship-type.enum';
 
 @Component({
   selector: 'app-board',
@@ -17,9 +16,10 @@ import {Field} from '../_models/field';
 })
 export class BoardComponent {
 
-  ships: Ship[];
+  ships: ShipInterface[];
   board: Board;
   settings: Settings;
+  stats: Statistics;
 
   constructor(private router: Router,
               private snackBar: MatSnackBar) {
@@ -27,6 +27,7 @@ export class BoardComponent {
     const settingData = localStorage.getItem('settingsData');
     this.settings = new Settings();
     this.ships = [];
+    this.stats = new Statistics();
 
     settingData ? this.settings.loadFromStorage(JSON.parse(settingData)) : this.router.navigate(['/']);
     this.board = new Board(this.settings);
@@ -42,20 +43,19 @@ export class BoardComponent {
   }
 
   shoot(field: Field) {
-    this.board.shoots++;
+    this.stats.fired++;
     if (!field.isShot) {
       field.isShot = true;
       if (!field.hasShip) {
-        this.board.missed++;
+        this.stats.missed++;
         this.snackBar.open('Pudło');
         return;
       }
 
-
       for (const ship of this.ships) {
         if (ship.id === field.shipId) {
-          ship.hp--;
-          if (ship.hp === 0) {
+          ship.hitPoints--;
+          if (ship.hitPoints === 0) {
             this.snackBar.open('Zatopiony');
           } else {
             this.snackBar.open('Trafiony');
@@ -68,27 +68,30 @@ export class BoardComponent {
 
 
   private generateShips(): void {
-    const numberOfOneMastShips = this.board.oneMastShips;
-    for (let i = 0; i < numberOfOneMastShips; i++) {
-      const ship = new OneMastShip(Math.floor(Math.random() * 100 % 100));
-      this.ships.push(ship);
+    const numberOfShips = 0;
+    const selectedType = 0;
+    // tslint:disable-next-line:forin
+    for (const type in ShipType) {
+      switch (type) {
+        case ShipType.OneMast.toString():
+          this.addShips(this.board.oneMastShips, +type);
+          break;
+        case ShipType.TwoMast.toString():
+          this.addShips(this.board.twoMastShips, +type);
+          break;
+        case ShipType.ThreeMast.toString():
+          this.addShips(this.board.threeMastShips, +type);
+          break;
+        case ShipType.FourMast.toString():
+          this.addShips(this.board.fourMastShips, +type);
+          break;
+      }
     }
+  }
 
-    const numberOfTwoMastShips = this.board.twoMastShips;
-    for (let i = 0; i < numberOfTwoMastShips; i++) {
-      const ship = new TwoMastShip(Math.floor(Math.random() * 100 % 100));
-      this.ships.push(ship);
-    }
-
-    const numberOfThreeMastShips = this.board.threeMastShips;
-    for (let i = 0; i < numberOfThreeMastShips; i++) {
-      const ship = new ThreeMastShip(Math.floor(Math.random() * 100 % 100));
-      this.ships.push(ship);
-    }
-
-    const numberOfFourMastShips = this.board.fourMastShips;
-    for (let i = 0; i < numberOfFourMastShips; i++) {
-      const ship = new FourMastShip(Math.floor(Math.random() * 100 % 100));
+  private addShips(numberOfShips: number, type: ShipType) {
+    for (let i = 0; i < numberOfShips; i++) {
+      const ship = new Ship(Math.floor(Math.random() * 100 % 100), type);
       this.ships.push(ship);
     }
   }
@@ -108,7 +111,7 @@ export class BoardComponent {
     }
   }
 
-  private placeShip(xPos: number, yPos: number, ship: Ship): void {
+  private placeShip(xPos: number, yPos: number, ship: ShipInterface): void {
     for (let i = 0; i < ship.shipType; i++) {
       this.board.fields[yPos + xPos + i].shipId = ship.id;
     }

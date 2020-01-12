@@ -1,3 +1,0 @@
-zmienić układ klas na statki i puste statki, statek zawiera ship
-statystyki do osobnej klasy
-nazwenictwo zmiennych
