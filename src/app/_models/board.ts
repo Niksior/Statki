@@ -30,16 +30,6 @@ export class Board extends Settings {
     this._fields = value;
   }
 
-  /*private _maxShipNum: number;
-
-  get maxShipNum(): number {
-    return this._maxShipNum;
-  }
-
-  set maxShipNum(value: number) {
-    this._maxShipNum = value;
-  }*/
-
   private _shoots: number;
 
   get shoots(): number {
@@ -69,47 +59,6 @@ export class Board extends Settings {
   set liveShips(value: number) {
     this._liveShips = value;
   }
-
-
-  /*private cardByshipId : Map<number,Array<string>> | null;
-
-  set setMapCardByShip (assignData : any )
-  {
-    if (assignData == null)
-    {
-      return;
-    }
-
-    if (this.cardByshipId == null)
-    {
-      return;
-    }
-
-    let shipId = assignData.shipId;
-    let cardClass = assignData.cardClass;
-
-    if( this.cardByshipId.size == 0)
-    {
-      this.cardByshipId.set(shipId, new Array<string>(cardClass));
-    }
-    else if( this.cardByshipId.size > 0)
-    {
-        let cardArray = this.cardByshipId.get(shipId);
-        if(cardArray != null )
-        {
-          cardArray.push(cardClass);
-        }
-    }
-  }
-
-  get getCardByShipId () : Map<number,string[]> | null
-  {
-    return this.cardByshipId;
-  }*/
-
-  /*countMaxShipNum() {
-    this._maxShipNum = (this._size * this._size) - (this._oneMastShips * 8 - this._twoMastShips * 10 - this._threeMastShips * 12 - this._fourMastShips * 14);
-  }*/
 
   private generateFields() {
     for (let i = 0; i < this._size; i++) {
