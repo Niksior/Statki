@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BoardComponent} from './board.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatCardModule, MatListModule, MatSnackBarModule} from '@angular/material';
-import {RouterModule} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('BoardComponent', () => {
   let component: BoardComponent;
@@ -15,7 +15,7 @@ describe('BoardComponent', () => {
         MatCardModule,
         MatListModule,
         MatSnackBarModule,
-        RouterModule
+        RouterTestingModule
       ],
       providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}]
     })
