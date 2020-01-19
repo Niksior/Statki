@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Settings} from '../_models/settings';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +8,8 @@ import {Settings} from '../_models/settings';
 export class NavbarComponent {
 
   title = 'Statki';
-  setting: Settings;
 
   constructor() {
-    this.setting = new Settings();
   }
 
 }
