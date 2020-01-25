@@ -44,4 +44,9 @@ describe('StartComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('automatic deployment should be set to true', () => {
+    const comp = fixture.componentInstance;
+    expect(comp.settingsForm.value.autoDeployment).toBe(true);
+  });
 });
